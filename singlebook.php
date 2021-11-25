@@ -4,14 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>FS Online Book Store</title>
-<?php
-session_start();
-if(isset($_POST['logout'])){
-  session_destroy();
-  header('location:about.php');
-  }
 
-?>
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -37,9 +30,119 @@ if(isset($_POST['logout'])){
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
+  <script src="js/jquery-3.4.1.min.js"></script>
+
 </head>
 
 <body>
+
+<?php
+session_start();
+if(isset($_POST['logout'])){
+    session_destroy();
+    header('location:index.php');
+    }
+ 
+
+if(!empty($_SESSION['username'])  ){
+$membershipcheck=$_SESSION['membership'];
+  $bid=$_GET['B_ID'];
+
+?>
+
+
+<script>
+$(document).ready(function(){
+var bid = '<?php echo $bid; ?>';
+var membershipcheck = '<?php echo $membershipcheck; ?>';
+$('#bookcontent').html('');
+
+$.get('main.php',{B_ID:bid,method:'singlebook'},function(book){
+if(book){
+    var row='';
+    var cat;
+    var error="'Buy a Membership for download this Pdf'";
+    var error2="'Buy a Membership to Preview the Book '";
+    var sbook=JSON.parse(book);
+    
+    $.each(sbook,function(i,j){
+      type=j.Type;
+      row+='<div class="col-md-5 mb-5"><img class="img-fluid w-100" src='+j.B_Image+' alt="teacher"></div>';
+      row+='<div class="col-md-6 mb-5">'
+      row+='<h3>'+j.B_Name+'</h3>'
+      row+='<h6 class="text-color">Description</h6><p class="mb-5">'+j.Description+'</p>'
+      row+='<div class="row">'
+      row+=' <div class="col-md-6 mb-5 mb-md-0">'
+      row+=' <h4 class="mb-4">Detail: </h4>'
+
+      row+='<ul class="list-unstyled">'
+      row+='<li class="mb-3"><i class=" mr-2">PRIZE</i> : <b>$ '+j.Prize+'</b></li>'
+      row+='<li class="mb-3"><i class=" mr-2">Issue Date</i> :<b> '+j.Date+'</b></li>'
+      row+='</ul>'
+      row+='</div>'
+
+
+
+
+      row+=' <div class="col-md-6 mb-5 mb-md-0">'
+      row+=' <h4 class="mb-4">Action: </h4>'
+
+      row+='<ul class="list-unstyled">'
+      
+      if(type==0){
+        row+='<li class="mb-3"><a class="btn btn-success" target="_blank" href="preview.php?Path='+j.Pdf+'" >Preview</a></li>'
+      
+      row+='<li class="mb-3"><a class="btn btn-info" href='+j.Pdf+' download>Free DOWNLOAD PDF</a></li>'
+      }
+      else if(type==1 && membershipcheck==1){
+        row+='<li class="mb-3"><a class="btn btn-info" target="_blank" href="preview.php?Path='+j.Pdf+'" >Preview</a></li>'
+      
+      row+='<li class="mb-3"><a class="btn btn-info"  href='+j.Pdf+' download> DOWNLOAD PDF</a></li>'
+     
+      }
+      else{
+        row+='<li class="mb-3"><a class="btn btn-success" onclick="alert('+error2+')" >Preview</a></li>'
+        row+='<li class="mb-3"><a class="btn btn-info" onclick="alert('+error+')" >DOWNLOAD PDF</a></li>'
+      
+      }
+      row+='<li class="mb-3"  ><h6 style="width:245px" class="" >Quantity</h6></li>'
+      row+='<li class="mb-3"><input type="number" id="quant" value="1" min="1"/></li>'
+    
+      row+='<li class="mb-3"  ><h6 style="width:245px" class="" > Order  Hard Copy</h6></li>'
+      row+='<li class="mb-3"  ><button style="width:245px" class="btn btn-primary" onclick="gocart()" value="'+j.ID+'" id="btnn"> Add to Cart</button></li>'
+      row+='</ul>'
+       
+  
+      row+='</div>'
+      row+='</div>';
+
+
+
+    });
+    $('#bookcontent').html(row);
+
+}
+else{
+    alert('Fail To find Book');
+    window.location.href="books.php";
+}
+
+});
+
+
+});
+function gocart(){
+
+var idd=$('#btnn').val();
+  var q=$("#quant").val();
+
+window.location.href='addtocart.php?B_ID='+idd+'&quant='+q+'';
+
+}
+
+</script>
+
+
   
 
 <!-- header -->
@@ -96,10 +199,10 @@ if(isset($_POST['logout'])){
             <li class="nav-item @@Home">
               <a class="nav-link" href="index.php">Home</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item @@about">
               <a class="nav-link" href="about.php">About</a>
             </li>
-            <li class="nav-item @@books">
+            <li class="nav-item active">
               <a class="nav-link" href="books.php">Books</a>
             </li>
            
@@ -174,8 +277,8 @@ if(isset($_POST['logout'])){
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary">LOGIN</button>
                     </div>
-                </form>
-            </div>
+
+                  </div>
         </div>
     </div>
 </div>
@@ -186,82 +289,50 @@ if(isset($_POST['logout'])){
     <div class="row">
       <div class="col-md-8">
         <ul class="list-inline custom-breadcrumb">
-          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">About Us</a></li>
-          <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" >Our Book</a></li>
+          <li class="list-inline-item text-white h3 font-secondary nasted"></li>
         </ul>
-        <p class="text-lighten">The Online Library's mission is to develop and maintain online resources and services in support of the present and future teaching, learning and research needs of the University of London's Distance Learning community.</p>
+        <p class="text-lighten">Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
       </div>
     </div>
   </div>
 </section>
 <!-- /page title -->
 
-<!-- about -->
-<section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <img class="img-fluid w-100 mb-4" src="images/about/about-page1.jpg" alt="about image">
-        <h2 class="section-title">Mission of the Online Library</h2>
-        <p>Access to adequate library services and resources is essential for the attainment of superior academic skills in post-secondary education, regardless of where students, faculty, and programs are located.</p>
-        <p>Members of the distance learning community are entitled to library services and resources equivalent to those provided for students and faculty in traditional campus settings.</p>
-      </div>
-    </div>
-  </div>
+<!-- teacher details -->
 
-<!--about2-->
+<br>  
+<div class="container">
+    <div class="row" id="bookcontent" >
 
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-       <h2 class="section-title">Eligibility for services</h2>
-        <p>To use the services, you must be enrolled with the University's of London distance learning programmes or a member of staff involved in delivering and supporting the distance learning programmes and directly employed by the University of London.</p>
-        <p>You can access all the Online Library’s resources using your Portal username and password. Students on SOAS courses need to access the Online Library using an Athens account. To register for an Athens account,<a href="Login/index.php"> click here.</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- /about -->
+      
 
 
-<!-- success story -->
-<section class="section bg-cover" data-background="images/backgrounds/success-story.jpg">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 col-sm-4 position-relative success-video">
-        <a class="play-btn venobox" href="https://www.youtube.com/watch?v=_p6Y1caQazk" data-vbtype="video">
-          <i class="ti-control-play"></i>
-        </a>
-      </div>
-      <div class="col-lg-6 col-sm-8">
-        <div class="bg-white p-5">
-          <h2 class="section-title">Top Ten</h2>
-          <p>Literary critics, historians, avid readers, and even casual readers will all have different opinions on which novel is truly the “greatest book ever written.” Is it a novel with beautiful, captivating figurative language? Or one with gritty realism? A novel that has had an immense social impact? Or one that has more subtly affected the world? Here is a list of 12 novels that, for various reasons, have been considered some of the greatest works of literature ever written.</p>
-          <p>A few months back, one of our customers sent us a special request for a list of 10 books we felt everyone absolutely must read in his or her lifetime.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- /success story -->
-
-<!-- teachers -->  
-<section class="section">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-6 order-2 order-md-1">
-        <h2 class="section-title">About writer</h2>
-        <p>William Shakespeare was an English playwright, poet, and actor, widely regarded as the greatest writer in the English language and the world's greatest dramatist. His plays have been translated into every major living language and are performed more often than those of any other playwright. Shakespeare produced most of his known works between 1589 and 1613. Many of Shakespeare's plays were published in editions of varying quality and accuracy in his lifetime.</p>
+      
+         
         
-      <a class="btn btn-primary" href="writter.php">More Info</a>
-      </div>
-      <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
-        <img class="img-fluid w-100" src="images/william-shakespeare.jpg" alt="about image">
-      </div>
+            
+             
+
+
+
+
+      
+    
+
+
+
+
+
     </div>
+
+
+
+
+
   </div>
-</section>
-  <!-- /teachers -->
+<!-- /teacher details -->
+
 
 
 <!-- footer -->
@@ -275,7 +346,7 @@ if(isset($_POST['logout'])){
           <!-- logo -->
           <a class="logo-footer" href="index.html"><img class="img-fluid mb-4" height="80px" width="120px" src="images/sdfsdfsf.png" height="" alt="logo" ></a>
           <ul class="list-unstyled">
-            <li class="mb-2">Aptech FB area  naseerabad, karachi, Pakistan</li>
+            <li class="mb-2">Aptech FB area naseerabad, karachi, Pakistan</li>
             <li class="mb-2">090078601</li>
             <li class="mb-2">090078601</li>
             <li class="mb-2">ABC@gmail.com</li>
@@ -333,6 +404,16 @@ if(isset($_POST['logout'])){
 
 <!-- Main Script -->
 <script src="js/script.js"></script>
+<?php }
+else{
+    
+ 
+  echo "<script>
+alert('Login First');
+window.location.href='Login/index.php';
+</script>";
 
+}
+?>
 </body>
 </html>

@@ -4,14 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>FS Online Book Store</title>
-<?php
-session_start();
-if(isset($_POST['logout'])){
-  session_destroy();
-  header('location:about.php');
-  }
 
-?>
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -37,10 +30,63 @@ if(isset($_POST['logout'])){
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
+  <script src="js/jquery-3.4.1.min.js"></script>
+
 </head>
 
-<body>
+<?php
+session_start();
+
+
+if(isset($_POST['clear'])){
+  unset($_SESSION['cart']);
+}
+
+
+
+if(!empty($_SESSION['cart'])){
+if(isset($_POST['deletebtn'])){
+  $id=$_POST['deletebtn'];
   
+  
+  foreach($_SESSION['cart'] as $varr=>$valuueee){
+		
+		if($valuueee['ID']==$id){
+      $vax=$varr['ID'];
+     
+      array_splice($_SESSION['cart'],$vax,$vax+1);
+           
+           
+    }	 
+    
+		}
+	}
+
+  }
+
+
+
+	
+
+if(isset($_POST['logout'])){
+    session_destroy();
+    header('location:index.php');
+    }
+
+
+
+
+   ?>
+    
+
+
+
+
+
+
+
+<body>
+
 
 <!-- header -->
 <header class="fixed-top header">
@@ -66,7 +112,8 @@ if(isset($_POST['logout'])){
             <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="Login/register.php" >register</a></li>
            <?php }
            else{?>
-            <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="showcart.php"><img style="height:30px" src="images/cart.png"/></a></li>
+           
+           <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="showcart.php"><img style="height:30px" src="images/cart.png"/></a></li>
             <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="Login/membership.php">Membership</a></li>
             <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="#"><?php echo( $_SESSION['username']);?></a></li>
             <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block"><form method="post"><input  class="btn-warning" style="font-size:12px" type="submit" value="Log Out" name="logout"/></form></a></li>
@@ -96,10 +143,10 @@ if(isset($_POST['logout'])){
             <li class="nav-item @@Home">
               <a class="nav-link" href="index.php">Home</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item @@about">
               <a class="nav-link" href="about.php">About</a>
             </li>
-            <li class="nav-item @@books">
+            <li class="nav-item active">
               <a class="nav-link" href="books.php">Books</a>
             </li>
            
@@ -116,69 +163,6 @@ if(isset($_POST['logout'])){
   </div>
 </header>
 <!-- /header -->
-<!-- Modal -->
-<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content rounded-0 border-0 p-4">
-            <div class="modal-header border-0">
-                <h3>Register</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="login">
-                    <form action="#" class="row">
-                        <div class="col-12">
-                            <input type="text" class="form-control mb-3" id="signupPhone" name="signupPhone" placeholder="Phone">
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control mb-3" id="signupName" name="signupName" placeholder="Name">
-                        </div>
-                        <div class="col-12">
-                            <input type="email" class="form-control mb-3" id="signupEmail" name="signupEmail" placeholder="Email">
-                        </div>
-                        <div class="col-12">
-                            <input type="password" class="form-control mb-3" id="signupPassword" name="signupPassword" placeholder="Password">
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary">SIGN UP</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content rounded-0 border-0 p-4">
-            <div class="modal-header border-0">
-                <h3>Login</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="#" class="row">
-                    <div class="col-12">
-                        <input type="text" class="form-control mb-3" id="loginPhone" name="loginPhone" placeholder="Phone">
-                    </div>
-                    <div class="col-12">
-                        <input type="text" class="form-control mb-3" id="loginName" name="loginName" placeholder="Name">
-                    </div>
-                    <div class="col-12">
-                        <input type="password" class="form-control mb-3" id="loginPassword" name="loginPassword" placeholder="Password">
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary">LOGIN</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- page title -->
 <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
@@ -186,82 +170,178 @@ if(isset($_POST['logout'])){
     <div class="row">
       <div class="col-md-8">
         <ul class="list-inline custom-breadcrumb">
-          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">About Us</a></li>
-          <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" >Your Cart</a></li>
+          <li class="list-inline-item text-white h3 font-secondary nasted"></li>
         </ul>
-        <p class="text-lighten">The Online Library's mission is to develop and maintain online resources and services in support of the present and future teaching, learning and research needs of the University of London's Distance Learning community.</p>
-      </div>
+       </div>
     </div>
   </div>
 </section>
-<!-- /page title -->
+<!-- page title  close-->
 
-<!-- about -->
-<section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <img class="img-fluid w-100 mb-4" src="images/about/about-page1.jpg" alt="about image">
-        <h2 class="section-title">Mission of the Online Library</h2>
-        <p>Access to adequate library services and resources is essential for the attainment of superior academic skills in post-secondary education, regardless of where students, faculty, and programs are located.</p>
-        <p>Members of the distance learning community are entitled to library services and resources equivalent to those provided for students and faculty in traditional campus settings.</p>
-      </div>
-    </div>
+<!-- Code-->
+
+<div class="container">
+
+<?php if(!empty($_SESSION['cart'])){ ?>
+<table class="table table-condensed" >
+<tr>
+<th width="10%">Title</th>
+<th width="10%">Name</th>
+<th width="10%">Prize</th>
+<th width="10%">Quantity</th>
+<th width="10%">Total Prize</th>
+
+<th width="10%">Delete Item</th>
+</tr>
+
+<?php
+$tprice=0;
+foreach($_SESSION['cart'] as $value){?>
+<tr>
+<td><img style="width:50px;height: 50px" src="<?php echo($value['b_image']);?>"/> </td>
+<td><?php echo($value['b_name']);?></td>
+<td><?php echo('$'.$value['prize']);?></td>
+<td><?php echo($value['quant']);?></td>
+<?php 
+$prize=$value['prize'];
+$tprixe=$prize*$value['quant'];
+
+$tprice=$tprice+$tprixe;
+?>
+<td><?php echo('$'.$tprixe);?></td>
+<form method="POST">
+<td><button name="deletebtn" style="background-color: transparent;color: red;border: 0px;" value="<?php echo($value['ID'])?>">Delete</button></td>
+</form>
+</tr>
+<?php }?>
+</table>
+
+
+<?php
+    
+
+if(isset($_POST['addtocart']) ){
+
+if($_POST['address']!=''){
+$con=mysqli_connect('localhost','root','','ebook');
+
+$i=0;
+$address=$_POST['address'];
+$Uid=uniqid();
+$userid=$_SESSION['userid']; 
+$email=$_SESSION['email']; 
+$date=date("Y/m/d");
+$t_prive=0;
+
+foreach($_SESSION['cart'] as $key=>$value){
+  $t=$value["prize"]*$value["quant"];
+  $t_prive=$t_prive+$t;
+$BID=$value["ID"];
+$p=$value["prize"];
+$q=$value["quant"];
+$tp=$value["prize"]*$value["quant"];
+
+  $q="insert into orderdetail values(0,'$Uid','$BID','$p','$q','$tp')";
+  
+  $r=$con->query($q);
+  
+
+
+   }
+
+   $q1="insert into b_order values(0,'$Uid','$userid','$email','$date','$address','$t_prive',0)";
+   
+  $result=$con->query($q1);
+  
+  if($result){
+    
+  unset($_SESSION['cart']);
+  
+  echo "<script>
+ alert('Your order has been recieve');
+  </script>
+  ";
+  echo '<script>
+  window.location.href = "index.php";
+  </script>
+  ';
+  }
+
+  }
+  else{
+    
+   
+  echo "<script>
+  alert('Enter Address');
+  </script>";
+  
+  }
+    
+}
+    
+?>
+
+
+
+
+
+
+
+
+
+
+
+<form method="POST">
+<div class="row">
+
+<div class="col-sm-3">
+<br>
+
+<input type="submit" class="btn btn-danger" name="clear" value="Clear Cart"/>
+
+</div>
+<div class="col-sm-5">
+<br>
+
+<textarea  rows="5" cols="35" placeholder="Enter the complete Address Where you want to Deliver" name="address"></textarea>
+
+</div>
+
+<div class="col-sm-4">
+  
+<h5>Your Total Price is : <?php echo('$'.$tprice); ?></h5>
+
+<input type="submit" class="btn btn-primary" name="addtocart" value="Check Out"/>
+
+</div>
+
+
+</div></form>
+<br>
+<?php }
+else{
+?>
+
+<div class=" container">
+  <div>
+    <h1>Cart is Empty</h1>
   </div>
-
-<!--about2-->
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-       <h2 class="section-title">Eligibility for services</h2>
-        <p>To use the services, you must be enrolled with the University's of London distance learning programmes or a member of staff involved in delivering and supporting the distance learning programmes and directly employed by the University of London.</p>
-        <p>You can access all the Online Library’s resources using your Portal username and password. Students on SOAS courses need to access the Online Library using an Athens account. To register for an Athens account,<a href="Login/index.php"> click here.</a></p>
-      </div>
-    </div>
+  <br/>
+  <div>
+    <a class="btn btn-primary" href="books.php">Go To Books</a>
   </div>
-</section>
-<!-- /about -->
+</div>
+
+<?php
+}
+?>
 
 
-<!-- success story -->
-<section class="section bg-cover" data-background="images/backgrounds/success-story.jpg">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 col-sm-4 position-relative success-video">
-        <a class="play-btn venobox" href="https://www.youtube.com/watch?v=_p6Y1caQazk" data-vbtype="video">
-          <i class="ti-control-play"></i>
-        </a>
-      </div>
-      <div class="col-lg-6 col-sm-8">
-        <div class="bg-white p-5">
-          <h2 class="section-title">Top Ten</h2>
-          <p>Literary critics, historians, avid readers, and even casual readers will all have different opinions on which novel is truly the “greatest book ever written.” Is it a novel with beautiful, captivating figurative language? Or one with gritty realism? A novel that has had an immense social impact? Or one that has more subtly affected the world? Here is a list of 12 novels that, for various reasons, have been considered some of the greatest works of literature ever written.</p>
-          <p>A few months back, one of our customers sent us a special request for a list of 10 books we felt everyone absolutely must read in his or her lifetime.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- /success story -->
+</div>
+<!-- Code close-->
 
-<!-- teachers -->  
-<section class="section">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-6 order-2 order-md-1">
-        <h2 class="section-title">About writer</h2>
-        <p>William Shakespeare was an English playwright, poet, and actor, widely regarded as the greatest writer in the English language and the world's greatest dramatist. His plays have been translated into every major living language and are performed more often than those of any other playwright. Shakespeare produced most of his known works between 1589 and 1613. Many of Shakespeare's plays were published in editions of varying quality and accuracy in his lifetime.</p>
-        
-      <a class="btn btn-primary" href="writter.php">More Info</a>
-      </div>
-      <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
-        <img class="img-fluid w-100" src="images/william-shakespeare.jpg" alt="about image">
-      </div>
-    </div>
-  </div>
-</section>
-  <!-- /teachers -->
+
 
 
 <!-- footer -->
@@ -275,7 +355,7 @@ if(isset($_POST['logout'])){
           <!-- logo -->
           <a class="logo-footer" href="index.html"><img class="img-fluid mb-4" height="80px" width="120px" src="images/sdfsdfsf.png" height="" alt="logo" ></a>
           <ul class="list-unstyled">
-            <li class="mb-2">Aptech FB area  naseerabad, karachi, Pakistan</li>
+            <li class="mb-2">Aptech FB area naseerabad, karachi, Pakistan</li>
             <li class="mb-2">090078601</li>
             <li class="mb-2">090078601</li>
             <li class="mb-2">ABC@gmail.com</li>
@@ -333,6 +413,7 @@ if(isset($_POST['logout'])){
 
 <!-- Main Script -->
 <script src="js/script.js"></script>
+
 
 </body>
 </html>

@@ -4,14 +4,15 @@
 <head>
   <meta charset="utf-8">
   <title>FS Online Book Store</title>
-<?php
+  <?php
 session_start();
 if(isset($_POST['logout'])){
   session_destroy();
-  header('location:about.php');
+  header('location:writter.php');
   }
 
 ?>
+
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -93,17 +94,17 @@ if(isset($_POST['logout'])){
 
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="navbar-nav ml-auto text-center">
-            <li class="nav-item @@Home">
+            <li class="nav-item @@home">
               <a class="nav-link" href="index.php">Home</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item @@about">
               <a class="nav-link" href="about.php">About</a>
             </li>
             <li class="nav-item @@books">
               <a class="nav-link" href="books.php">Books</a>
             </li>
            
-            <li class="nav-item @@writter">
+            <li class="nav-item active">
               <a class="nav-link" href="writter.php">Writter</a>
             </li>
             <li class="nav-item @@contact">
@@ -186,74 +187,25 @@ if(isset($_POST['logout'])){
     <div class="row">
       <div class="col-md-8">
         <ul class="list-inline custom-breadcrumb">
-          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">About Us</a></li>
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">About Writter</a></li>
           <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
         </ul>
-        <p class="text-lighten">The Online Library's mission is to develop and maintain online resources and services in support of the present and future teaching, learning and research needs of the University of London's Distance Learning community.</p>
+ 
       </div>
     </div>
   </div>
 </section>
 <!-- /page title -->
 
-<!-- about -->
-<section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <img class="img-fluid w-100 mb-4" src="images/about/about-page1.jpg" alt="about image">
-        <h2 class="section-title">Mission of the Online Library</h2>
-        <p>Access to adequate library services and resources is essential for the attainment of superior academic skills in post-secondary education, regardless of where students, faculty, and programs are located.</p>
-        <p>Members of the distance learning community are entitled to library services and resources equivalent to those provided for students and faculty in traditional campus settings.</p>
-      </div>
-    </div>
-  </div>
-
-<!--about2-->
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-       <h2 class="section-title">Eligibility for services</h2>
-        <p>To use the services, you must be enrolled with the University's of London distance learning programmes or a member of staff involved in delivering and supporting the distance learning programmes and directly employed by the University of London.</p>
-        <p>You can access all the Online Library’s resources using your Portal username and password. Students on SOAS courses need to access the Online Library using an Athens account. To register for an Athens account,<a href="Login/index.php"> click here.</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- /about -->
-
-
-<!-- success story -->
-<section class="section bg-cover" data-background="images/backgrounds/success-story.jpg">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 col-sm-4 position-relative success-video">
-        <a class="play-btn venobox" href="https://www.youtube.com/watch?v=_p6Y1caQazk" data-vbtype="video">
-          <i class="ti-control-play"></i>
-        </a>
-      </div>
-      <div class="col-lg-6 col-sm-8">
-        <div class="bg-white p-5">
-          <h2 class="section-title">Top Ten</h2>
-          <p>Literary critics, historians, avid readers, and even casual readers will all have different opinions on which novel is truly the “greatest book ever written.” Is it a novel with beautiful, captivating figurative language? Or one with gritty realism? A novel that has had an immense social impact? Or one that has more subtly affected the world? Here is a list of 12 novels that, for various reasons, have been considered some of the greatest works of literature ever written.</p>
-          <p>A few months back, one of our customers sent us a special request for a list of 10 books we felt everyone absolutely must read in his or her lifetime.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- /success story -->
-
-<!-- teachers -->  
+<!-- blogs -->  
 <section class="section">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-6 order-2 order-md-1">
-        <h2 class="section-title">About writer</h2>
+        <h2 class="section-title">Willams Shakespeare</h2>
         <p>William Shakespeare was an English playwright, poet, and actor, widely regarded as the greatest writer in the English language and the world's greatest dramatist. His plays have been translated into every major living language and are performed more often than those of any other playwright. Shakespeare produced most of his known works between 1589 and 1613. Many of Shakespeare's plays were published in editions of varying quality and accuracy in his lifetime.</p>
+        <p>William Shakespeare was a renowned English poet, playwright, and actor born in 1564 in Stratford-upon-Avon. His birthday is most commonly celebrated on 23 April (see When was Shakespeare born), which is also believed to be the date he died in 1616. ... Shakespeare's poems also remain popular to this day.</p>
         
-      <a class="btn btn-primary" href="writter.php">More Info</a>
       </div>
       <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
         <img class="img-fluid w-100" src="images/william-shakespeare.jpg" alt="about image">
@@ -261,7 +213,7 @@ if(isset($_POST['logout'])){
     </div>
   </div>
 </section>
-  <!-- /teachers -->
+<!-- /blogs -->
 
 
 <!-- footer -->
@@ -275,7 +227,7 @@ if(isset($_POST['logout'])){
           <!-- logo -->
           <a class="logo-footer" href="index.html"><img class="img-fluid mb-4" height="80px" width="120px" src="images/sdfsdfsf.png" height="" alt="logo" ></a>
           <ul class="list-unstyled">
-            <li class="mb-2">Aptech FB area  naseerabad, karachi, Pakistan</li>
+            <li class="mb-2">aptech FB area naseerabad, karachi, Pakistan</li>
             <li class="mb-2">090078601</li>
             <li class="mb-2">090078601</li>
             <li class="mb-2">ABC@gmail.com</li>
