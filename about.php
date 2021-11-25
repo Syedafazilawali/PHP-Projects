@@ -1,125 +1,22 @@
-<?php
-include ('db.php');
-session_start();
-?> 
-<!DOCTYPE HTML>
 <html>
-	<head>
-		<title>FS Free Book Online Store</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
-    <?php
-if(isset($_COOKIE['firstname']))
-{
-echo"<center><h3>welcome ".$_COOKIE['firstname']." To OUR Online Store</h3></center>";
-	}
-	else
-	{
-		header('location:login.php');
-		}
-?>
-		<!-- Wrapper -->
-			<div id="wrapper">
+<div><br/><center><h2><font face="Lucida Handwriting" size="+1" color="#00CCFF">ABOUT US</font></h2></center></div>
+<div style="width:100%;float:left">
+<div>
+  <p><br/>
+  
+	  <div align="center"><img src="usepics/abt3.jpg"/></div>
+	  <div>
+	  <p>
+	  <p>Launched in 1993, Fashion Shop created a niche in the ready to wear market in India with a premium range of clothing for all. With focus on product innovation and unique use of colors it has today come a long way since it was incepted in 1993.</p><br>
 
-				<!-- Header -->
-				<header id="header">
-					<div class="inner">
+<p>The brand in no time has become the choice of the up market, trend-savvy, sophisticated and discerning Indian and changed the way he dressed. With flagship stores in the best locations and international service, Fashion Shop brought in an International shopping experience to the country. The nation saw one of the first retail brands of international quality grow, attain national acclaim. Our distribution channel spread not only all over the country but crossed borders to the Middle East; it continues to grow with each year with now over 350 shopping destinations across the country. Today, the brand is part of the Future group.</p><br>
 
-						<!-- Logo -->
-							<a href="index.php" class="logo">
-									<span class="fa fa-book"></span> <span class="title">FS Book Online Store</span>
-								</a>
+<p>Fashion Shop has always used highest quality fabrics and product engineering techniques that give the user the unique comfort and tactile feel which no other brand offers. This is clubbed with the use of colors to give the sophisticate, yet colorful look that is unique to the Brand.</p><br>
 
-						<!-- Nav -->
-							<nav>
-								<ul>
-									<li><a href="#menu">Menu</a></li>
-								</ul>
-							</nav>
+<p>To ensure that customers get the best product from us, we have pioneered the techniques like Golf Ball Wash, Cone Dyed Casuals and Thermo-fused buttoning to name a few. These innovations have taken our collection to a whole new level, making it synonymous with the words "Luxury & Style". As a part of the initiative to reward our premium customers, ColorPlus has launched ‘Spectrum’, an exclusive membership to a plethora of benefits. Spectrum offers its members reward points on every purchase which can be redeemed at any of our outlets and a host of other benefits and privileges.</p><br>
 
-					</div>
-				</header>
-
-			<!-- Menu -->
-				<nav id="menu">
-					<h2>Menu</h2>
-					<ul>
-						<li><a href="index.php">Home</a></li>
-
-						<li><a href="#" class="dropdown-toggle">Products Categories</a>
-                        <ul>
-								<li><a href="products.php">COMICS</a></li>
-								<li><a href="products.php">NOVELS</a></li>
-								<li><a href="products.php">STORY BOOKS</a></li>
-								<li><a href="products.php">GENERAL KNOWLEDGE BOOKS</a></li>
-                                <li><a href="products.php">QUIZ BOOKS</a></li>
-                                <li><a href="products.php">JOURNALS</a></li>
-							</ul>
-                        </li>
-
-						<li><a href="checkout.php">Checkout</a></li>
-
-						<li>
-							<a href="#" class="dropdown-toggle">About</a>
-
-							<ul>
-								<li><a href="about.php" class="active">About Us</a></li>
-								<li><a href="blog.php">Blog</a></li>
-								<li><a href="testimonials.php">Testimonials</a></li>
-								<li><a href="terms.php">Terms</a></li>
-							</ul>
-						</li>
-
-						<li><a href="contact.php">Contact Us</a></li>
-                        <li><a href="logout.php">Logout</a></li>
-					</ul>
-				</nav>
-
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
-							<h1>About Us</h1>
-
-							<div class="image main">
-								<img src="images/pexels-photo-256455.jpeg" class="img-fluid" alt="" />
-							</div>
-
-							<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique.</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel venenatis mauris vehicula hendrerit.</p>
-							<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
-						</div>
-					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-							<section>
-								<ul class="icons">
-									<li><a href="https://www.twitter.com/" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="https://www.facebook.com/" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
-									<li><a href="https://www.instagram.com/" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="https://www.linkedIn.com/" class="icon style2 fa-linkedin"><span class="label">LinkedIn</span></a></li>
-								</ul>
-
-								&nbsp;
-							</section>
-
-						
-						</div>
-					</footer>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/main.js"></script>
-	</body>
-</html>
+<p>Thus Fashion Shop today is a complete lifestyle brand complementing every facet of your personality: be it at work, leisure or those special moments.</p></p>
+	 </div>
+	  </div>
+	  </div>
+	  </html>

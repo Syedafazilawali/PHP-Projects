@@ -1,92 +1,70 @@
 <?php
-include ('db.php');
 session_start();
-?>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Login Form</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+include("config.php");
+extract($_REQUEST);
+$i=$_REQUEST['itemno'];
 
-		<!-- MATERIAL DESIGN ICONIC FONT -->
-		<link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
-		
-		<!-- STYLE CSS -->
-		<link rel="stylesheet" href="css/style.css">
-	</head>
-
-	<body>
- 		<div class="wrapper" style="background-image: url('images/bg-registration-form-2.jpg');">
-        <div class="inner">
-        <br>
-
-<center>
-<div class="text-right"><style>.text-right{
-	
-	position:relative;
-	top:150px;
-	
-	
-	}</style>Don't have an account ? <a href="student registration.php">Register Now</a></div>
-				<form action="login.php" method="POST">
-					<h3>Login Form</h3>
-					<div class="form-group">
-						<div class="form-wrapper">
-							<label>firstname</label>
-							<input type="text" name="firstname" class="form-control" required>
-						</div>
-                        <br>
-                        <br>
-                        
-<div class="form-wrapper">
-						<label>password</label>
-						<input type="password" name="password" class="form-control"required>
-					</div>
-                    <br>
-                    <br>
-<button type="submit" name="login" value="submit" class=" btn btn-danger">Login Now</button>
-
-</form>
-
-
-<?php
-if (isset($_POST['login']))
+if(isset($sub))
 {
-	$firstname = $_POST['firstname'];
-	$password = $_POST['password'];
-	
-	$hash = password_hash($password, PASSWORD_DEFAULT);
-	$verify = password_verify($password, $hash);
-if(isset($_POST['login']))
+$id=$_REQUEST['t1'];
+$pass=$_REQUEST['p1'];
+  $sel=mysqli_query($conn,"select id,pass from register where id='$id'");
+  $arr=mysqli_fetch_array($sel);
+if(($arr['id']==$id) and( $arr['pass']==$pass))
+  {
+   $_SESSION['eid']=$id;
+echo "<script>location.href='order.php?itemno=$i'</script>";
+   }
+else
 {
-	$firstname = $_POST['firstname'];
-	setcookie('firstname',$firstname);
-	header('location:index.php');
-	
-	}
-	
-	$query = "select * from registration_tb where firstname = '$firstname'
-	and
-	password = '$verify'
-	";
-	
-	$run = mysqli_query($con,$query);
-	$totalrows = mysqli_num_rows($run);
-	
-	if(password_verify($password,$hash))
-	{
-		$_SESSION['firstname'] = $firstname;
-		header('location:index.php');
-		echo'successfully login';
-	}
-	
-	else
-	{
-		$message = '<br><div class="alert alert-danger" role="alert">invalid credentials</div>';
-		echo"USERNAME OR PASSWORD IS INCORRECT";
-	}
+$er="id and password do not match";
+}
 }
 ?>
-</body>
 <html>
+<div><br/><center><h2><font face="Lucida Handwriting" size="+1" color="#00CCFF">Login your Account</font></h2></center></div>
+<div>
+<div style="width:25%;float:right">
+<img src="usepics/7.jpg">
+</div>
+
+<br><br>
+<div style="width:70%;float:right" align="center" >
+<center><fieldset style="background:#CC99CC;width:50%">
+<br><br>
+<table width="244" border="0" align="center">
+<form method="post">
+<tr><td colspan="2"><?php echo "<font color='green'>$er</font>";?></td></tr>
+  <tr>
+    <td width="90"><div align="center"><font size="+1" face="Comic Sans MS">UserID:</font></div></td>
+    <td width="144"><label>
+      <input name="t1" type="text" id="t1">
+    </label></td>
+  </tr>
+  <tr>
+    <td><div align="center"><font size="+1" face="Comic Sans MS">Password:</font></div></td>
+    <td><input name="p1" type="password" id="p1"></td>
+  </tr>
+  <tr>
+    <td><label>
+      <div align="center">
+<input name="sub" type="submit" value="Login">
+        </div>
+    </label></td>
+    <td><strong><a href="index.php?con=11"><font color="#993333" size="+1" face="Bradley Hand ITC">Sign Up</font></a></strong> </td>
+  </tr>
+  <tr>
+    <td height="37" colspan="2"><div align="center"><a href="#"><font size="+1" face="Bradley Hand ITC"><strong>Forgot your Password? </strong></font></a></div></td>
+    </tr>
+  </form>
+</table>
+</fieldset></center>
+</div>
+
+</div>
+
+<!--<div style="width:100%;float:left"><center><b>Copyright&copy;Priya Gupta</b></center></div>
+</div>-->
+
+</body>
+</html>

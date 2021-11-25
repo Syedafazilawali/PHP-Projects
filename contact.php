@@ -1,158 +1,182 @@
 <?php
-include ('db.php');
-session_start();
-?> 
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>FS Free Book Online Store</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
-    <?php
-if(isset($_COOKIE['firstname']))
-{
-	echo"<center><h3>welcome ".$_COOKIE['firstname']." To OUR Online Store</h3></center>";
-	}
-	else
-	{
-		header('location:login.php');
-		}
+include("config.php");
+extract($_REQUEST);
+if(isset($sub))
+ {
+$name=$_REQUEST['t1'];
+$phone=$_REQUEST['t2'];
+$email=$_REQUEST['t3'];
+$subj=$_REQUEST['t4'];
+$mesg=$_REQUEST['t5'];
+ if(mysqli_query($conn,"insert into fdbk values('$name','$phone','$email','$subj','$mesg')"))
+    {
+	  echo "<font face='Lucida Handwriting' color='red' size='+1'>Message sent successfully</font>";
+    }
+ 
+ }
 ?>
-		<!-- Wrapper -->
-			<div id="wrapper">
+<html>
+<head>
+<script>
+function name()
+{
+  var name=/^[a-zA-Z]{4,15}$/;
+   if(document.f1.t1.value.search(name)==-1)
+    {
+	 alert("enter correct name");
+	 document.f1.t1.focus();
+	 return false;
+	 }
+	} 
+		 function phone()
+{
+  var phone=/^[0-9]{10,15}$/;
+   if(document.f1.t2.value.search(phone)==-1)
+    {
+	 alert("enter correct phone no");
+	 document.f1.t2.focus();
+	 return false;
+	 }
+	} 
+	function email()
+{
+ var email=/^[a-zA-Z0-9-_\.]+@[a-zA-Z]+\.[a-zA-Z]{2,3}$/;
+   if(document.f1.t3.value.search(email)==-1)
+    {
+	 alert("enter correct email");
+	 document.f1.t3.focus();
+	 return false;
+	 }
+	} 
+		function subj()
+{
+ 	var subj=/^[a-zA_Z0-9]{5,100}$/;
+   if(document.f1.t4.value.search(subj)==-1)
+    {
+	 alert("enter correct subject");
+	 document.f1.t4.focus();
+	 return false;
+	 }
+	} 
 
-				<!-- Header -->
-					<header id="header">
-						<div class="inner">
+	
+	
+function vali()
+{
 
-							<!-- Logo -->
-								<a href="index.php" class="logo">
-									<span class="fa fa-book"></span> <span class="title">FS Book Online Store </span>
-								</a>
+	var name=/^[a-zA-Z]{4,15}$/;
+	var phone=/^[0-9]{10,15}$/;
+	 var email=/^[a-zA-Z0-9-_\.]+@[a-zA-Z]+\.[a-zA-Z]{2,3}$/;
+	 var subj=/^[a-zA_Z0-9]{5,100}$/;
+	 var mesg=/^[a-zA_Z0-9]{10,300}$/;
+   if(document.f1.t1.value.search(name)==-1)
+    {
+	 alert("enter correct name");
+	 document.f1.t1.focus();
+	 return false;
+	 }
+	 
+ 
+  else if(document.f1.t2.value.search(phone)==-1)
+    {
+	 alert("enter correct phone no");
+	 document.f1.t2.focus();
+	 return false;
+	 }
+	 
 
-							<!-- Nav -->
-								<nav>
-									<ul>
-										<li><a href="#menu">Menu</a></li>
-									</ul>
-								</nav>
 
-						</div>
-					</header>
+   else if(document.f1.t3.value.search(email)==-1)
+    {
+	 alert("enter correct email");
+	 document.f1.t3.focus();
+	 return false;
+	 }
+	 
+	
+   else if(document.f1.t4.value.search(subj)==-1)
+    {
+	 alert("enter correct subject");
+	 document.f1.t4.focus();
+	 return false;
+	 }
+	
 
-				<!-- Menu -->
-					<nav id="menu">
-						<h2>Menu</h2>
-						<ul>
-							<li><a href="index.php">Home</a></li>
+ 	
+   
+	 else
+	 {
+	 return true;
+	 }
+	}
+</script>
+</head>
+<div><br/><center><h2><font face="Lucida Handwriting" size="+1" color="#00CCFF">CONTACT US</font></h2></center></div>
+<div style="width:100%;float:left" >
+<div>
+  <p><br/>
+      <font face="Lucida Handwriting" size="+1" color="#996699">E-mail:</font><font face="Lucida Handwriting" size="+1" color="#009966"> Priya@gmail.com
+      </font><font face="Lucida Handwriting" size="+1" color="#66CC66"><br>
+      </font>
+	   <br>
+    <font color="#996699" size="+1" face="Lucida Handwriting">Address:    <font color="#009966">Fashion Shop outlet,Triton Mall,C-Scheme,Jaipur </font></font></p>
+  <p> <font color="#996699" size="+1" face="Lucida Handwriting">Talk to us:</font><font color="#006633" size="+1" face="Lucida Handwriting"> 044 - 42189294 / 5</font><font size="+1"><br>
+    <font color="#996699" face="Lucida Handwriting">Fax us at:</font></font> <font color="#006633" size="+1" face="Lucida Handwriting">044 - 26258843 </font></p>
+  <p>&nbsp;</p>
+</div>
 
-							<li><a href="#" class="dropdown-toggle">Products Categories</a>
-                        <ul>
-								<li><a href="products.php">COMICS</a></li>
-								<li><a href="products.php">NOVELS</a></li>
-								<li><a href="products.php">STORY BOOKS</a></li>
-								<li><a href="products.php">GENERAL KNOWLEDGE BOOKS</a></li>
-                                <li><a href="products.php">QUIZ BOOKS</a></li>
-                                <li><a href="products.php">JOURNALS</a></li>
-							</ul>
-                        </li>
 
-							<li><a href="checkout.php">Checkout</a></li>
 
-							<li>
-								<a href="#" class="dropdown-toggle">About</a>
+<div>
+<div style="width:25%;float:left"><br><br><center><fieldset style="width:25%;background-color:#CC99CC"><p><font size="+1" face="Comic Sans MS">We at Fashion Shop value your views and your concerns regarding our products and services. We would like to know how we can serve you better. If you have any queries please feel free to drop in your queries at customercarecell@fashionshop.in and we will be happy to assist you.</font></p>
+</fieldset>
+</center></div>&nbsp;&nbsp;
+<div style="width:50%;float:right">
+<div><br/><br>
+<center><h2 align="left"><font face="Lucida Handwriting" size="+1" color="#00CCFF">FeedBack Form</font></h2>
+</center></div>
+<center><fieldset style="width:25%;border-color:#006633;float:left">
+<br><br>
+  <form method="post" name="f1" onSubmit="return vali()">
+    <table width="288" border="0" align="center">
+      <tr>
+        <td width="111"><font color="#996699" size="+1" face="Comic Sans MS">Name:</font></td>
+        <td width="161"><label>
+          <input name="t1" type="text" id="t1" onChange="return name()">
+        </label></td>
+      </tr>
+      <tr>
+        <td><font color="#996699" size="+1" face="Comic Sans MS">Phone No: </font></td>
+        <td><label>
+        <input name="t2" type="text" id="t2" onChange="return phone()">
+        </label></td>
+      </tr>
+      <tr>
+        <td><font color="#996699" size="+1" face="Comic Sans MS">Email:</font></td>
+        <td><label>
+        <input name="t3" type="text" id="t3" onChange="return email()">
+        </label></td>
+      </tr>
+      <tr>
+        <td><font color="#996699" size="+1" face="Comic Sans MS">Sub:</font></td>
+        <td><input name="t4" type="text" id="t4" onChange="return subj()"></td>
+      </tr>
+      <tr>
+        <td><font color="#996699" size="+1" face="Comic Sans MS">Message:</font></td>
+        <td><label>
+          <textarea name="t5" id="text" ></textarea>
+        </label></td>
+      </tr>
+	  <tr>
+	  <td colspan="2"><center><input name="sub" type="submit" value="Submit"></center>	  </td>
+	  </tr> 
+    </table>
+  
 
-								<ul>
-									<li><a href="about.php">About Us</a></li>
-									<li><a href="blog.php">Blog</a></li>
-									<li><a href="testimonials.php">Testimonials</a></li>
-									<li><a href="terms.php">Terms</a></li>
-								</ul>
-							</li>
-
-							<li><a href="contact.php" class="active">Contact Us</a></li>
-                            <li><a href="logout.php">Logout</a></li>
-						</ul>
-					</nav>
-
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
-							<h1>Contact Us</h1>
-							<span class="image main"><img src="images/map.jpg" alt="" /></span>
-							<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique.</p>
-						</div>
-					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-							<section>
-								<h2>Contact Us</h2>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<input type="text" name="name" id="name" placeholder="Name" />
-										</div>
-
-										<div class="field half">
-											<input type="text" name="email" id="email" placeholder="Email" />
-										</div>
-
-										<div class="field">
-											<input type="text" name="subject" id="subject" placeholder="subject" />
-										</div>
-
-										<div class="field">
-											<textarea name="message" id="message" rows="3" placeholder="Notes"></textarea>
-										</div>
-
-										<div class="field text-right">
-											<label>&nbsp;</label>
-
-											<ul class="actions">
-												<li><input type="submit" value="Send Message" class="primary" /></li>
-											</ul>
-										</div>
-									</div>
-								</form>
-							</section>
-							<section>
-								<h2>Contact Info</h2>
-
-								<ul class="alt">
-									<li><span class="fa fa-envelope-o"></span> <a href="https://www.gmail.com/">fsfreebookonlinestore@gmail.com</a></li>
-									<li><span class="fa fa-phone"></span> 090078601 </li>
-									<li><span class="fa fa-map-pin"></span> ABC area karachi Pakistan</li>
-								</ul>
-
-								<h2>Follow Us</h2>
-
-								<ul class="icons">
-									<li><a href="https://www.twitter.com/" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="https://www.facebook.com/" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
-									<li><a href="https://www.instagram.com/" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="https://www.linkedIn.com/" class="icon style2 fa-linkedin"><span class="label">LinkedIn</span></a></li>
-								</ul>
-							</section>
-
-							
-						</div>
-					</footer>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+</form>
+</fieldset></center>
+</div>
+</div>
+</div>
+</body>
 </html>

@@ -1,331 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cz"><head>
 <?php
-include ('db.php');
-session_start();
-?> 
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>FS Free Book Online Store</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
- 
-<?php
-
-if(isset($_COOKIE['firstname']))
-{
-	echo"<center><h3>welcome ".$_COOKIE['firstname']." To OUR Online Store</h3></center>";
-	}
-	else
-	{
-		header('location:login.php');
-		}
+error_reporting(1);
+include("index1.php");
 ?>
-		<!-- Wrapper -->
-			<div id="wrapper">
+<title>Company name - title</title>
 
-				<!-- Header -->
-					<header id="header">
-						<div class="inner">
+<meta http-equiv="Content-language" content="cs">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content=" ">
+<meta name="keywords" content=" ">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta name="author" content="Kl?ra Frolichov?, Sunlight webdesign">
+<meta name="Copyright" content="Kl?ra Frolichov?, Sunlight webdesign 2007">
+<meta name="design" content="Sunlight webdesign - http://www.sunlight.cz, info@sunlight.cz">
+<link rel="stylesheet" type="text/css" href="default.css" title="default">
 
-							<!-- Logo -->
-								<a href="index.php" class="logo">
-									<span class="fa fa-book"></span> <span class="title">FS Book Online Store</span>
-								</a>
+</head>
 
-							<!-- Nav -->
-								<nav>
-									<ul>
-										<li><a href="#menu">Menu</a></li>
-									</ul>
-								</nav>
+<body>
+<div id="WholePage">
+<div id="Inner">
+<div id="Container" style="border:groove;border-color:#00CCFF">
+<div id="Head">
+<div id="Head_left">
+<div id="Leaf_top"><img src="img/shop3.jpg" width="324" /></div>
+<div id="Leaf_bottom"> <a class="registration" href="index.php?con=11">REGISTRATION</a> <a class="log-in" href="index.php?con=12">LOG IN</a> </div>
+</div>
+<div id="Head_right">
+<div id="Logo">
+<div id="Name"><span class="blue">F</span><span>ashion</span>&nbsp;<span class="blue">S</span><span>hop</span> </div>
+<div id="Informations">Latest trends in Fashion</div>
+</div>
+<div id="Top_menu"> <a class="kart" href="?page=home"><span>CART</span></a> <a class="orders" href="index.php?con=3"><span>GALLERY</span></a>
+<a class="contact" href="index.php?con=1"><span>CONTACT</span></a>
+<a class="help" href="index.php?con=2"><span>ABOUT US</span></a>
+<a class="home" href="?page=home"><span>HOME</span></a>
+</div>
+</div>
+</div>
+<div id="CentralPart">
+<div id="LeftPart">
+<div id="Menu">
+<div id="Menu_header">
+<div class="menu_header_left"> <span class="menu_text"><font face="Georgia, Times New Roman, Times, serif">Search</font></span>
+</div>
+<div class="menu_header_right"> </div>
+<div id="Menu_content"> <!--<a class="menu_item" href="?page=home"><span>--><!-- Start of Page Search -->
 
-						</div>
-					</header>
+		
+		    <h5>&nbsp;</h5>
+			<form method="post">
+		    <input type="text" name="t1" value="search" onfocus="if(this.value=='search'){this.value='';}"onBlur="if(this.value==''){this.value='search';}"/>
+            <input name="sear" type="submit" class="button" id="sub" value="Go" />
+</form>
+<?php
+extract($_REQUEST);
+	if(isset($sear))
+	  {
+	   $se=$_REQUEST['t1'];
+	   if($se!=NULL)
+	   {
+	   echo "<script>location.href='index.php?se=$se'</script>";
+	   }
+      }
+?>
+		  <h5>&nbsp;</h5>
+		  <!--</form>-->
+		
 
-				<!-- Menu -->
-					<nav id="menu">
-						<h2>Menu</h2>
-						<ul>
-							<li><a href="index.php" class="active">Home</a></li>
+		<!-- End of Page Search --></span></a><br>
+</div>
+<div class="menu_header_left"> <span class="menu_text">MEN</span>
+</div>
+<div class="menu_header_right"> </div>
+</div>
+<div id="Menu_content"> <a class="menu_item" href="index.php?catg=1 & subcatg=Casual Shirts"><span>Casual Shirts</span></a><br>
+<a class="menu_item" href="index.php?catg=1 & subcatg=Jeans"><span>Jeans</span></a><br>
+<a class="menu_item" href="index.php?catg=1 & subcatg=T-Shirts"><span>T-shirts
+</span></a><br>
+<a class="menu_item" href="index.php?catg=1 & subcatg=Footwear"><span>Footwear</span></a><br>
+<a class="menu_item" href="index.php?catg=1 & subcatg=Shorts"><span>Shorts</span></a><br>
+<a class="menu_item" href="index.php?catg=1 & subcatg=watches"><span>Watches
+</span></a><br>
 
-							<li><a href="#" class="dropdown-toggle">Products Categories</a>
-                        <ul>
-								<li><a href="products.php">COMICS</a></li>
-								<li><a href="products.php">NOVELS</a></li>
-								<li><a href="products.php">STORY BOOKS</a></li>
-								<li><a href="products.php">GENERAL KNOWLEDGE BOOKS</a></li>
-                                <li><a href="products.php">QUIZ BOOKS</a></li>
-                                <li><a href="products.php">JOURNALS</a></li>
-							</ul>
-                        </li>
+</div>
 
+<div class="menu_header_left"> <span class="menu_text">WOMEN</span>
+</div>
+<div class="menu_header_right"> </div>
+<div id="Menu_content"> <a class="menu_item" href="index.php?catg=2 & subcatg=dresses"><span>Dresses</span></a><br>
+<a class="menu_item" href="index.php?catg=2 & subcatg=Churidar Suits"><span>Churidar Suits</span></a><br>
+<a class="menu_item" href="index.php?catg=2 & subcatg=Kurtas"><span>Kurtas</span></a><br>
+<a class="menu_item" href="index.php?catg=2 & subcatg=Sandals"><span>Sandals</span></a><br>
+<a class="menu_item" href="index.php?catg=2 & subcatg=Office Wear"><span>Office Wear</span></a><br>
+<a class="menu_item" href="index.php?catg=2 & subcatg=Artificial Jewellery"><span>Artificial Jewellery</span></a><br>
+</div>
 
-							<li><a href="checkout.php">Checkout</a></li>
+<div class="menu_header_left"> <span class="menu_text">KIDS</span>
+</div>
+<div class="menu_header_right"> </div>
+<div id="Menu_content"> <a class="menu_item" href="index.php?catg=3 & subcatg=Baby Apparel"><span>Baby Apparel</span></a><br>
+<a class="menu_item" href="index.php?catg=3 & subcatg=Girls Apparel"><span>Girls Apparel</span></a><br>
+<a class="menu_item" href="index.php?catg=3 & subcatg=Boys Apparel"><span>Boys Apparel</span></a><br>
+<a class="menu_item" href="index.php?catg=3 & subcatg=Kids Toys"><span>Kids Toys</span></a><br>
+<!--<a class="menu_item" href="?page=home"><span>Office Wear</span></a><br>
+<a class="menu_item" href="?page=home"><span>Artificial Jewellery</span></a><br>-->
+</div>
+</div>
+<img src="usepics/4.jpg" width="228" height="183" /></div>
 
-							<li>
-								<a href="#" class="dropdown-toggle">About</a>
+<div id="RightPart">
+<?php
+include("config.php");
+  if(isset($se))
+	    {
+		include("search.php");
+		}
+if($_REQUEST['con']==1)
+{
+include("contact.php");
+}
+if($_REQUEST['con']==2)
+{
+include("about.php");
+}
+if($_REQUEST['con']==3)
+{
+include("gallery.php");
+}
+if($_REQUEST['con']==11)
+{
+include("register.php");
+ }
+if($_REQUEST['con']==12)
+{
+include("login.php");
+ }
 
-								<ul>
-									<li><a href="about.php">About Us</a></li>
-									<li><a href="blog.php">Blog</a></li>
-									<li><a href="testimonials.php">Testimonials</a></li>
-									<li><a href="terms.php">Terms</a></li>
-								</ul>
-							</li>
+if($_REQUEST['con']==13)
+{
+include("welcome.php");
+ }
+if($_REQUEST['con']==14)
+{
+include("viewitem.php");
+}
 
-							<li><a href="contact.php">Contact Us</a></li>
-                            <li><a href="logout.php">Logout</a></li>
-                            
-						</ul>
-					</nav>
+if(!(isset($catg))and !(isset($con))and !(isset($se)))
+{
+include("home.php");
+}
 
-				<!-- Main -->
-					<div id="main">
-						<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-						  <ol class="carousel-indicators">
-						    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-						    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-						    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-						  </ol>
-						  <div class="carousel-inner">
-						    <div class="carousel-item active">
-						      <img class="d-block w-100" src="images/slider-image-1-1920x700.jpg" alt="First slide">
-						    </div>
-						    <div class="carousel-item">
-						      <img class="d-block w-100" src="images/slider-image-2-1920x700.jpg" alt="Second slide">
-						    </div>
-						    <div class="carousel-item">
-						      <img class="d-block w-100" src="images/slider-image-3-1920x700.jpg" alt="Third slide">
-						    </div>
-						  </div>
-						  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-						    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						    <span class="sr-only">Previous</span>
-						  </a>
-						  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-						    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-						    <span class="sr-only">Next</span>
-						  </a>
-						</div>
+if(isset($catg)==1)
+{
+if($_REQUEST['subcatg']=='Casual Shirts')
+{
+include("casual.php");
+}
+}
+if(isset($catg)==1)
+{
+if($_REQUEST['subcatg']=='Jeans')
+{
+include("jeans.php");
+}
+}
+if(isset($catg)==1)
+{
+if($_REQUEST['subcatg']=='T-Shirts')
+{
+include("tshirt.php");
+}
+}
+if(isset($catg)==1)
+{
+if($_REQUEST['subcatg']=='Footwear')
+{
+include("shoe.php");
+}
+}
+if(isset($catg)==1)
+{
+if($_REQUEST['subcatg']=='Shorts')
+{
+include("shorts.php");
+}
+}
+if(isset($catg)==1)
+{
+if($_REQUEST['subcatg']=='watches')
+{
+include("watch.php");
+}
+}
 
-						<br>
-						<br>
+if(isset($catg)==2)
+{
+	if($_REQUEST['subcatg']=='dresses')
+	{
+	include("dress.php");
+	}
+}
 
-						<div class="inner">
-							<!-- About Us -->
-							<header id="inner">
-								<h1>Find your new book!</h1>
-								<p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.</p>
-							</header>
+if(isset($catg)==2)
+{
+if($_REQUEST['subcatg']=='Churidar Suits')
+{
+include("suits.php");
+}
+}
+if(isset($catg)==2)
+{
+if($_REQUEST['subcatg']=='Sandals')
+{
+include("sandals.php");
+}
+}
+if(isset($catg)==2)
+{
+if($_REQUEST['subcatg']=='Kurtas')
+{
+include("kurtas.php");
+}
+}
+if(isset($catg)==2)
+{
+if($_REQUEST['subcatg']=='Office Wear')
+{
+include("office.php");
+}
+}
+if(isset($catg)==2)
+{
+if($_REQUEST['subcatg']=='Artificial Jewellery')
+{
+include("jewel.php");
+}
+}
+if(isset($catg)==3)
+{
+if($_REQUEST['subcatg']=='Baby Apparel')
+{
+include("baby.php");
+}
+}
+if(isset($catg)==3)
+{
+if($_REQUEST['subcatg']=='Girls Apparel')
+{
+include("girls.php");
+}
+}
+if(isset($catg)==3)
+{
+if($_REQUEST['subcatg']=='Boys Apparel')
+{
+include("boy.php");
+}
+}
+if(isset($catg)==3)
+{
+if($_REQUEST['subcatg']=='Kids Toys')
+{
+include("toy.php");
+}
+}
+?>
 
-							<br>
+</div>
+<div class="cleaner"></div>
+</div>
+<div id="Bottom">
+<p class="down"><b>Copyright &copy; Fashion Shop, Design by:Priya Gupta</b></p>
 
-							<h2 class="h2">Featured Products</h2>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-							<!-- Products -->
-							<section class="tiles">
-								<article class="style1">
-									<span class="image">
-										<img src="images/images.jpg" alt="" />
-									</span>
-									<a href="product-details.php">
-										<h2>Lorem ipsum dolor sit amet, consectetur</h2>
-										
-										<p><del>$300.00</del> <strong>$200.00</strong></p>
-
-										<p>Vestibulum id est eu felis vulputate hendrerit uspendisse dapibus turpis in </p>
-									</a>
-								</article>
-								<article class="style2">
-									<span class="image">
-										<img src="images/novels.jpg" alt="" />
-									</span>
-									<a href="product-details.php">
-										<h2>Lorem ipsum dolor sit amet, consectetur</h2>
-										
-										<p><del>$150.00</del> <strong>$100.00</strong></p>
-
-										<p>Vestibulum id est eu felis vulputate hendrerit uspendisse dapibus turpis in </p>
-									</a>
-								</article>
-								<article class="style3">
-									<span class="image">
-										<img src="images/story book.jpg" alt="" />
-									</span>
-									<a href="product-details.php">
-										<h2>Lorem ipsum dolor sit amet, consectetur</h2>
-										
-										<p><del>$100.00</del> <strong>$70.00</strong></p>
-
-										<p>Vestibulum id est eu felis vulputate hendrerit uspendisse dapibus turpis in </p>
-									</a>
-								</article>
-
-								<article class="style4">
-									<span class="image">
-										<img src="images/g.k book.jpg" alt="" />
-									</span>
-									<a href="product-details.php">
-										<h2>Lorem ipsum dolor sit amet, consectetur</h2>
-										
-										<p><del>$200.00</del> <strong>$130.00</strong></p>
-
-										<p>Vestibulum id est eu felis vulputate hendrerit uspendisse dapibus turpis in </p>
-									</a>
-								</article>
-
-								<article class="style5">
-									<span class="image">
-										<img src="images/quiz book.jpg" alt="" />
-									</span>
-									<a href="product-details.php">
-										<h2>Lorem ipsum dolor sit amet, consectetur</h2>
-										
-										<p><del>$450.00</del> <strong>$350.00</strong></p>
-
-										<p>Vestibulum id est eu felis vulputate hendrerit uspendisse dapibus turpis in </p>
-									</a>
-								</article>
-
-								<article class="style6">
-									<span class="image">
-										<img src="images/journal.jpg" alt="" />
-									</span>
-									<a href="product-details.php">
-										<h2>Lorem ipsum dolor sit amet, consectetur</h2>
-										
-										<p><del>$50.00</del> <strong>$30.00</strong></p>
-
-										<p>Vestibulum id est eu felis vulputate hendrerit uspendisse dapibus turpis in </p>
-									</a>
-								</article>
-							</section>
-
-							<p class="text-center"><a href="products.php">More Books &nbsp;<i class="fa fa-long-arrow-right"></i></a></p>
-							
-							<br>
-
-							<h2 class="h2">Testimonials</h2>
-							
-							<div class="row">
-								<div class="col-sm-6 text-center">
-									<p class="m-n"><em>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt delectus mollitia, debitis architecto recusandae? Quidem ipsa, quo, labore minima enim similique, delectus ullam non laboriosam laborum distinctio repellat quas deserunt voluptas reprehenderit dignissimos voluptatum deleniti saepe. Facere expedita autem quos."</em></p>
-
-									<p><strong> - John Doe</strong></p>
-								</div>
-
-								<div class="col-sm-6 text-center">
-									<p class="m-n"><em>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt delectus mollitia, debitis architecto recusandae? Quidem ipsa, quo, labore minima enim similique, delectus ullam non laboriosam laborum distinctio repellat quas deserunt voluptas reprehenderit dignissimos voluptatum deleniti saepe. Facere expedita autem quos."</em></p>
-
-									<p><strong>- John Doe</strong> </p>
-								</div>
-							</div>
-
-							<p class="text-center"><a href="testimonials.php">Read More &nbsp;<i class="fa fa-long-arrow-right"></i></a></p>
-
-							<br>
-
-							<h2 class="h2">Blog</h2>
-							
-							<div class="row">
-								<div class="col-sm-4 text-center">
-									<img src="images/blog-1-720x480.jpg" class="img-fluid" alt="" />
-
-									<h2 class="m-n"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
-
-									<p> John Doe &nbsp;|&nbsp; 12/06/2020 10:30</p>
-								</div>
-
-								<div class="col-sm-4 text-center">
-									<img src="images/blog-2-720x480.jpg" class="img-fluid" alt="" />
-
-									<h2 class="m-n"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
-
-									<p> John Doe &nbsp;|&nbsp; 12/06/2020 10:30</p>
-								</div>
-
-								<div class="col-sm-4 text-center">
-									<img src="images/blog-3-720x480.jpg" class="img-fluid" alt="" />
-
-									<h2 class="m-n"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
-
-									<p> John Doe &nbsp;|&nbsp; 12/06/2020 10:30</p>
-								</div>
-							</div>
-
-							<p class="text-center"><a href="blog.php">Read More &nbsp;<i class="fa fa-long-arrow-right"></i></a></p>
-
-							
-						</div>
-					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-							<section>
-								<h2>Contact Us</h2>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<input type="text" name="name" id="name" placeholder="Name" />
-										</div>
-
-										<div class="field half">
-											<input type="text" name="email" id="email" placeholder="Email" />
-										</div>
-
-										<div class="field">
-											<input type="text" name="subject" id="subject" placeholder="Subject" />
-										</div>
-
-										<div class="field">
-											<textarea name="message" id="message" rows="3" placeholder="Notes"></textarea>
-										</div>
-
-										<div class="field text-right">
-											<label>&nbsp;</label>
-
-											<ul class="actions">
-												<li><input type="submit" value="Send Message" class="primary" /></li>
-											</ul>
-										</div>
-									</div>
-								</form>
-							</section>
-							<section>
-								<h2>Contact Info</h2>
-
-								<ul class="alt">
-									<li><span class="fa fa-envelope-o"></span> <a href="https://www.gmail.com/">fsfreeonlinebookstore@gmail.com</a></li>
-									<li><span class="fa fa-phone"></span>090078601 </li>
-									<li><span class="fa fa-map-pin"></span> ABC area karachi Pakistan</li>
-								</ul>
-
-								<h2>Follow Us</h2>
-
-								<ul class="icons">
-									<li><a href="https://www.twitter.com/" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="https://www.facebook.com/" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
-									<li><a href="https://www.instagram.com/" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="https://www.linkedIn.com/" class="icon style2 fa-linkedin"><span class="label">LinkedIn</span></a></li>
-								</ul>
-							</section>
-						</div>
-					</footer>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
-</html>
+</body></html>
